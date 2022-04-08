@@ -1,6 +1,5 @@
 const char index_html[] = 
 R"=====(
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -100,7 +99,9 @@ R"=====(
       fetch("/get-temp").then((resp) => {
         if (resp.ok) {
           resp.text().then((body) => {
-            document.getElementById("currentTemperature").innerHTML = body;
+            const data = body.split('|');
+            document.getElementById("currentTemperature").innerHTML = data[0];
+            temp = parseInt(data[1]);
           });
         } else {
           document.getElementById("currentTemperature").innerHTML =
@@ -158,5 +159,4 @@ R"=====(
     setTemp();
   </script>
 </html>
-
 )=====";

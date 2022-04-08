@@ -97,7 +97,9 @@
       fetch("/get-temp").then((resp) => {
         if (resp.ok) {
           resp.text().then((body) => {
-            document.getElementById("currentTemperature").innerHTML = body;
+            const data = body.split('|');
+            document.getElementById("currentTemperature").innerHTML = data[0];
+            temp = parseInt(data[2]);
           });
         } else {
           document.getElementById("currentTemperature").innerHTML =
